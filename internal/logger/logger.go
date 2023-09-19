@@ -6,7 +6,6 @@ package logger
 
 import (
 	"bufio"
-	"bytes"
 	"fmt"
 	"os"
 	"path"
@@ -66,7 +65,7 @@ const (
 	serviceName = "[" + "storage" + "] "
 )
 
-var shortFileName = bytes.Compare([]byte(runtime.GOOS), []byte("linux")) == 0
+var shortFileName = false
 
 func doLog(writer logWriter, callerBack int, level string, messages ...interface{}) {
 	date := time.Now().Format("01-02 15:04:05")
