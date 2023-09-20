@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	_ "fmt"
 	"plugin"
 	"reflect"
 
@@ -12,8 +13,10 @@ import (
 )
 
 func dynamicCall(fun any, params ...any) (any, error) {
+	_, func2name := export_helper.Export(exports.F)
+
 	funVal := reflect.ValueOf(fun)
-	name, ok := export_helper.FuncNamedMap[reflect_utils.ValueType(funVal)]
+	name, ok := func2name[reflect_utils.ValueType(funVal)]
 	if !ok {
 		return nil, errors.New("un-registered function")
 	}
@@ -53,6 +56,6 @@ func dynamicCall(fun any, params ...any) (any, error) {
 
 func main() {
 	logger.Info(dynamicCall(exports.F.AddInt64, int64(123), int64(500)))
-	logger.Info(dynamicCall(exports.F.AddInt64, int64(100), int64(55)))
+	logger.Info(dynamicCall(exports.F.PrintHello))
 	logger.Info(dynamicCall(exports.F.AddInt64, int64(5), int64(7)))
 }

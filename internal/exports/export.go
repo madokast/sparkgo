@@ -1,15 +1,17 @@
 package exports
 
-func (fun) PrintHello() {
+import "github.com/madokast/sparkgo/internal/exports/export_helper"
+
+func (__remote__) PrintHello() {
 	println("Hwllo, world!")
 }
 
-func (fun) AddInt64(a, b int64) int64 {
+func (__remote__) AddInt64(a, b int64) int64 {
 	return a + b
 }
 
 // --------------- reflect helpers -----------------------
 
-type fun struct{}
+type __remote__ export_helper.FunctionGroup
 
-var F = fun{}
+var F = __remote__{}
