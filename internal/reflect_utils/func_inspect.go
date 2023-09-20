@@ -33,9 +33,3 @@ func FuncString(f function) string {
 	}
 	return sb.String()
 }
-
-func Call(f function, params []any) []any {
-	v := reflect.ValueOf(f)
-	
-	v.Call()
-}
